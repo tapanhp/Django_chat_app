@@ -10,7 +10,7 @@ chardet==3.0.4
 constantly==15.1.0
 cryptography==2.7
 daphne==2.3.0
-Django==2.2.1
+Django==2.2.10
 django-phonenumber-field==3.0.1
 django-sendsms==0.2.3
 hyperlink==19.0.0
