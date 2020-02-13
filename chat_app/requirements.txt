@@ -15,6 +15,7 @@ daphne==2.3.0
 dj-database-url==0.5.0
 Django==2.2.1
 django-heroku==0.3.1
+Django==2.2.10
 django-phonenumber-field==3.0.1
 django-sendsms==0.2.3
 gunicorn==20.0.4
@@ -22,6 +23,7 @@ hyperlink==19.0.0
 idna==2.8
 incremental==17.5.0
 phonenumberslite==8.10.13
+Pillow==6.2.0
 Pillow==6.0.0
 psycopg2==2.8.4
 pycparser==2.19
