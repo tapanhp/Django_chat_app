@@ -1,0 +1,60 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!------ Include the above in your HEAD tag ---------->
+
+</head>
+<body class="background">
+<div class="container">
+    <div class="card">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
+            <hr>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                {% if messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {% for message in messages %}
+                    <strong>{{ message }}</strong>
+                    {% endfor %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="uname" class="form-control" placeholder="Username" type="text">
+                    </div> <!-- input-group.// -->
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" placeholder="************" type="password" name="pswd">
+                    </div> <!-- input-group.// -->
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btns_registration"> Login</button>
+                </div> <!-- form-group// -->
+            </form>
+            <a href="{% url 'password_reset' %}"><h6 class="text-center">Forgot Password?</h6></a>
+            <a href="{% url 'registration' %}"><h6 class="text-center">Create account</h6></a>
+        </article>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
