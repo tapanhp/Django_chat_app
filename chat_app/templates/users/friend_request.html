@@ -1,0 +1,131 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Request</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body class="background">
+
+<div id="frame">
+    {% if messages %}
+        {% for message in messages %}
+            <script>confirm("{{ message }}");</script>
+        {% endfor %}
+    {% endif %}
+    <div class="background_block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <b>
+                        <h3 class="heading" style="text-align:center;padding-left:130px;">Friend Request List</h3>
+                    </b>
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-power-off" data-toggle="modal" data-target="#exampleModal"
+                       style="float:right;cursor:pointer;color:white;font-size:23px;"></i>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'home' %}"><i class="fa fa-home"
+                                                  style="cursor:pointer;font-size:25px;color:white;"></i></a>
+                </div>
+            </div>
+        </div>
+        <form action="{% url 'logout' %}" method="POST" id="logout">
+            {% csrf_token %}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                            <p>Are you sure you want to logout?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn_logout">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        {% if friend_request %}
+            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="th-sm">Requests
+
+                </th>
+                <th class="th-sm sort_icon_hidden">
+
+                </th>
+                <th class="th-sm sort_icon_hidden">
+
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for friend in friend_request %}
+                <tr id="tr-{{ friend.id }}">
+                    <td>
+                        <a href="{% url 'user_profile' friend.username %}"><img src="{{ friend.photo.url }}"
+                                                                                class="friend_images">
+                            <p class="name">{{ friend.first_name }} {{ friend.last_name }}</p>
+                            <p class="number">{{ friend.phone }}</p></a>
+                    </td>
+                    <td>
+                        <button id="accept-{{ friend.id }}" type="button" class="btn-success btn-sm btns_friend_request"
+                                onclick="accept_request('{{ friend.username }}', '{{ friend.id }}')"> &#10004; Accept
+                        </button>
+                    </td>
+                    <td class="decline_btn">
+                        <button id="decline-{{ friend.id }}" type="button" class="btn-danger btn-sm btns_friend_request"
+                                onclick="decline_request('{{ friend.username }}', '{{ friend.id }}')">&#x2716; Decline
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h6 class="text-center">No Requests are Pending</h6>
+        {% endif %}
+        </tbody>
+        <tfoot>
+        <tr>
+        </tr>
+        </tfoot>
+        </table>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+<script>
+    var notify_rooms = {{notifications_room_list|safe}};
+    var chatSockets = [];
+
+    for (var i = 0; i < notify_rooms.length; i++) {
+        var roomName = notify_rooms[i];
+        chatSockets[roomName] = new WebSocket(
+            'ws://' + window.location.host +
+            '/ws/chat/' + roomName + '/');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body class="background">
+<div class="container">
+    <div class="card">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <form name="form" id="registration_form" method="POST" action="{% url 'registration' %}"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {% for message in messages %}
+                    <strong>{{ message }}</strong>
+                    {% endfor %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="First name" type="text" name="fname" id="fname"
+                           required="true" onfocusout="validatename()">
+                </div>
+                <div class="alert2">
+                    <label id="fnameerr"></label>
+                </div><!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Last name" type="text" name="lname" id="lname"
+                           required="true" onfocusout="validatelname()">
+                </div>
+                <div class="alert2">
+                    <label id="lnameerr"></label>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="User name" name="uname" id="uname"
+                           type="text" required="true" onfocusout="validateuname()">
+                </div>
+                <div class="alert2">
+                    <label id="unameerr"></label>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Email address" type="email" name="email" id="email"
+                           required="true" onfocusout="emailvalidation()">
+                </div>
+                <div class="alert2">
+                    <label id="emailerr"></label>
+                </div><!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <input class="form-control input-field" type="text" placeholder="Phone No" name="phn" id="phone"
+                           required="true" onkeypress="return checknumber(event)" onfocusout="validatephn()">
+
+                </div>
+                <div class="alert2">
+                    <label id="phnerr"></label>
+                </div>
+                <!-- form-group// --><!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Create password" type="password" name="pswd" id="pswd"
+                           required="true" oncopy="return false" onpaste="return false"
+                           data-toggle="tooltip"
+                           title="Enter atleast one uppercase letter,lowercase letter,special character,digit, must be between 8 to 12."
+                           onfocusout="pswdvalidation()">
+                </div>
+                <div class="alert2">
+                    <label id="psderr"></label>
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Repeat password" type="password" required="true"
+                           name="cpswd" oncopy="return false" id="cpswd" onpaste="return false"
+                           onfocusout="cpswdvalidation()"
+                    >
+
+                </div>
+                <div class="alert2">
+                    <label id="cpswderr"></label>
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-camera"></i> </span>
+                    </div>
+                    <input class="form-control input-field" type="file" name="photo" id="singleFile" required="true"
+                           onchange="loadFile()">
+                </div>
+                <div class="alert2">
+                    <label id="extension"></label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btns_registration" type="button" id="reg_submit"
+                            onclick="allvalidation()"> Create Account
+                    </button>
+                </div> <!-- form-group// -->
+                <p class="text-center"><a href="../login">Log in instead</a></p>
+            </form>
+        </article>
+    </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

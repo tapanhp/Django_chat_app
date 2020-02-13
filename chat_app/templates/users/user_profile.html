@@ -1,0 +1,101 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body class="background profile-page">
+<div id="frame1">
+    <div class="background_block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <b>
+                        <h3 class="heading" style="text-align:center;padding-left:130px;">User Profile</h3>
+                    </b>
+                </div>
+                <div class="col-md-1">
+                    <i class="fa fa-power-off" data-toggle="modal" data-target="#exampleModal"
+                       style="float:right;cursor:pointer;color:white;font-size:23px;"></i>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'home' %}"><i class="fa fa-home" style="cursor:pointer;font-size:25px;color:white;"></i></a>
+                </div>
+            </div>
+        </div>
+        <form action="{% url 'logout' %}" method="POST" id="logout">
+    {% csrf_token %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn_logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- left column -->
+
+
+            <div class="col-md-4 col-sm-6 col-xs-4">
+                <!--<div class="text-center">-->
+                <img src="../media/{{ user.photo }}" class="img-radius"
+                     alt="avatar" height="210px" width="250px" style="border-radius:7px;">
+                {% if messages %}
+                <ul class="messages" id="message">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <!--</div>-->
+            </div>
+            <!-- edit form column -->
+            <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+
+                {% csrf_token %}
+                <div class="form-group">
+                    <b><label>First name</label>
+                        :</b>
+                    <label>{{ user.first_name }}</label>
+                </div>
+                <div class="form-group">
+                    <b><label>Last name</label>
+                        :</b>
+                    <label>{{ user.last_name}}</label>
+                </div>
+                <div class="form-group">
+                    <b><label>Phone No.</label>
+                        :</b>
+                    <label>{{ user.phone }}</label>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
