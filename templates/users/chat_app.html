@@ -1151,14 +1151,14 @@ for(i=0;i<all_room.length;i++){
     var roomName = all_room[i];
 
     chatSockets[all_room[i]] = new WebSocket(
-        'ws://' + window.location.host +
+        'wss://' + window.location.host +
         '/ws/chat/' + roomName + '/');
 }
-console.log('ws://' + window.location.host +
+console.log('wss://' + window.location.host +
         '/ws/chat/' + roomName + '/')
 
 chatSockets[notify_room] = new WebSocket(
-        'ws://' + window.location.host +
+        'wss://' + window.location.host +
         '/ws/chat/' + notify_room + '/');
 
 chatSockets[notify_room].onmessage = function(e) {

@@ -156,7 +156,7 @@ for(var i=0;i<notify_rooms.length;i++){
     var roomName = notify_rooms[i];
 
     chatSockets[roomName] = new WebSocket(
-        'ws://' + window.location.host +
+        'wss://' + window.location.host +
         '/ws/chat/' + roomName + '/');
 
 }

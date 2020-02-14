@@ -398,7 +398,7 @@ var friend_username
 var last_msg_date = []
 function chat_send_receive_socket(room, friend_notify_room, username){
     chatSockets[friend_notify_room] = new WebSocket(
-            'ws://' + window.location.host +
+            'wss://' + window.location.host +
             '/ws/chat/' + friend_notify_room + '/');
 
 //    if(last_msg_date[username]==null){
