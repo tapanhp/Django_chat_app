@@ -15,7 +15,6 @@ daphne==2.3.0
 dj-database-url==0.5.0
 Django==2.2.1
 django-heroku==0.3.1
-Django==2.2.10
 django-phonenumber-field==3.0.1
 django-sendsms==0.2.3
 gunicorn==20.0.4
