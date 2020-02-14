@@ -8,8 +8,8 @@ media
 
 # Backup files # 
 *.bak 
-*/*/migrations
-*/migrations/*
+
+
 .idea/*
 
 # If you are using PyCharm # 
