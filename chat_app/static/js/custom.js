@@ -798,7 +798,7 @@ $('.messages').scroll(function(){
 //        setTimeout(function(){
 //        // Simulate retrieving 4 messages
 //            for(var i=0;i<2;i++){
-//                $('.messages ul').prepend('<li class="sent"><p>Xyz</p></li>');
+//                $('.messages ul').prepend('<li class="sent"><p>XYZ</p></li>');
 //            }
 //            $('.messages').scrollTop(30);
 //        },1000);
