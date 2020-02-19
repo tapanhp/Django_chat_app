@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
+import asgi_redis
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -100,10 +101,11 @@ else:
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "BACKEND": asgi_redis.RedisChannelLayer,
         "CONFIG": {
             "hosts": [('localhost', '6379')],
         },
+        "ROUTING": "chat_app.routing.channel_routing",
     },
 }
 ASGI_APPLICATION = 'chat_app.routing.application'
