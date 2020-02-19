@@ -101,7 +101,7 @@ else:
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": asgi_redis.RedisChannelLayer,
+        "BACKEND": "asgi_redis.RedisChannelLayer",
         "CONFIG": {
             "hosts": [('localhost', '6379')],
         },
