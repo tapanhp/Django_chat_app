@@ -14,9 +14,3 @@ application = ProtocolTypeRouter({
         )
     ),
 })
-
-channel_routing = {
-    'websocket.connect': ChatConsumer.connect,
-    'websocket.receive': ChatConsumer.receive,
-    'websocket.disconnect': ChatConsumer.disconnect
-}
