@@ -106,7 +106,6 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
     },
 }
-ASGI_APPLICATION = 'chat_app.routing.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
