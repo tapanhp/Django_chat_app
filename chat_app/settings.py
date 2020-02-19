@@ -100,10 +100,11 @@ else:
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "BACKEND": "asgi_redis.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+            "hosts": [os.environ.get('REDISCLOUD_URL', 'redis://localhost:6379')],
         },
+        "ROUTING": "chat_app.routing.channel_routing",
     },
 }
 
