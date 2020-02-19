@@ -97,25 +97,16 @@ else:
             'PASSWORD': 'Inexture@12#',
         }
     }
-if DEBUG:
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "channels.layers.InMemoryChannelLayer"
-        }
-    }
 
-if UPLOAD_TO_HEROKU:
-    ## Channels Specific
-    CHANNEL_LAYERS = {
-        "default": {
-            "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {
-                "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-            },
-            "symmetric_encryption_keys": [SECRET_KEY],
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
-    }
-    ASGI_APPLICATION = 'chat_app.routing.application'
+    },
+}
+ASGI_APPLICATION = 'chat_app.routing.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

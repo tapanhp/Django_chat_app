@@ -2,6 +2,7 @@
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 import chatmessages.routing
+from chatmessages.consumers import ChatConsumer
 
 # middlewarestack which set url for socket connection
 
@@ -13,3 +14,9 @@ application = ProtocolTypeRouter({
         )
     ),
 })
+
+channel_routing = {
+    'websocket.connect': ChatConsumer.connect,
+    'websocket.receive': ChatConsumer.receive,
+    'websocket.disconnect': ChatConsumer.disconnect
+}

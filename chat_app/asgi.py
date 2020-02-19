@@ -4,9 +4,7 @@ defined in the ASGI_APPLICATION setting.
 """
 
 import os
-import django
-from channels.routing import get_default_application
+import channels.layers
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "chat_app.settings")
-django.setup()
-application = get_default_application()
+channel_layer = channels.layers.get_channel_layer()
