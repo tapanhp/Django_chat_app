@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'notification',
     'chatmessages',
     'group',
-    'error'
+    'error',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
