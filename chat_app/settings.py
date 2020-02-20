@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat_app.wsgi.application'
-ASGI_APPLICATION = "chat_app.routing.application"
+
 
 if DEBUG:
     # for development
@@ -100,9 +100,9 @@ else:
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDISCLOUD_URL', 'redis://localhost:6379')],
+            "hosts": [("redis-server-name", 6379)],
         },
     },
 }
