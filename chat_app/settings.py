@@ -104,7 +104,6 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [os.environ.get('REDISCLOUD_URL', 'redis://localhost:6379')],
         },
-        "ROUTING": "chat_app.routing.channel_routing",
     },
 }
 
