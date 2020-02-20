@@ -103,7 +103,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("https://django-channels-private-chat.herokuapp.com/", 6379)],
+            "hosts": [("localhost", 6379)],
         },
     },
 }
