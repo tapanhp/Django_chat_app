@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat_app.wsgi.application'
-
+ASGI_APPLICATION = "chat_app.routing.application"
 
 if DEBUG:
     # for development

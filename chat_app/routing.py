@@ -15,4 +15,3 @@ application = ProtocolTypeRouter({
     ),
 })
 
-ASGI_APPLICATION = "chat_app.routing.application"
